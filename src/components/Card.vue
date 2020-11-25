@@ -12,7 +12,6 @@
     <p class="card__price" v-else>
       {{ price | formatPrice}}
     </p>
-
     <p class="category__p">Бестселлер</p>
     <p class="card__rating">{{rating}} /5</p>
     <button class="card__button is-danger button is-pulled-right"> Заказать </button>
