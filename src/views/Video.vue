@@ -6,6 +6,7 @@
       <Card
         v-for="videocard in videocards"
         v-bind:key = "videocard.id"
+        v-bind:id = "videocard.id"
         v-bind:image = "videocard.image"
         v-bind:title = "videocard.title"
         v-bind:price = "videocard.price"

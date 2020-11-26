@@ -6,6 +6,7 @@
       <Card
         v-for="book in books"
         v-bind:key = "book.id"
+        v-bind:id = "book.id"
         v-bind:image = "book.image"
         v-bind:title = "book.title"
         v-bind:price = "book.price"

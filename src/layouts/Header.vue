@@ -1,9 +1,6 @@
 <template>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      <img src="../assets/logo_e.png" height="28">
-    </a>
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
     data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -14,51 +11,16 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-      <router-link to="/">Главная</router-link> |
-      <router-link to="/books">Книги</router-link>
-      <router-link to="/videocards">Видеокарты</router-link>
 
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+      <router-link to="/" class="navbar-item">Главная</router-link>
+      <router-link to="/books" class="navbar-item">Книги</router-link>
+      <router-link to="/videocards" class="navbar-item">Видеокарты</router-link>
     </div>
-
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
+          <router-link class="navbar-item button" to="/cart">
+            <img src="../assets/logo_e.png" height="28">
+            <strong class="counter">0</strong>
+          </router-link>
     </div>
   </div>
 </nav>

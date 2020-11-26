@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Video from '../views/Video.vue';
 import Books from '../views/Books.vue';
+import Cart from '../views/C.vue';
+import Product from '../views/Product.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,18 @@ const routes = [
     path: '/videocards',
     name: 'Video',
     component: Video,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
+  },
+  {
+    path: '/product/:id',
+    // :id - значение, которое будет передаваться
+    // в каждой карточке
+    name: 'Product',
+    component: Product,
   },
 ];
 
