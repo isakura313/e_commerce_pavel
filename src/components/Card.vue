@@ -3,7 +3,7 @@
 <div class="column is-one-quarter">
   <div class="card">
 <!--  v-bind связывает данные с содержимым атрибута-->
-    <img v-bind:src="image" class="card__image">
+    <div :style="{backgroundImage: `url(${image})`}" class="card__image"> </div>
     <router-link :to="'/product/' + id">
      <h3 class="card__title is-size-5"> {{ title | formatTitle }}</h3>
     </router-link>
@@ -52,6 +52,9 @@ export default {
       return title;
     },
     formatPrice(price) {
+      if (price > 999) {
+
+      }
       return `${price} ₽`;
     },
   },
@@ -62,7 +65,9 @@ export default {
 <style scoped>
 .card__image{
   height: 200px;
-  /* width: auto; */
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .card{
   padding: 20px;
