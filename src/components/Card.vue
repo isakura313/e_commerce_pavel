@@ -22,7 +22,9 @@
     star-size = 20
     :rating ="rating"
     />
-    <button class="card__button is-danger button is-pulled-right"> Заказать </button>
+    <button class="card__button is-danger button is-pulled-right" v-on:click="addProduct">
+      Заказать
+    </button>
   </div>
 </div>
 </template>
@@ -44,6 +46,11 @@ export default {
     discount: Boolean,
     rating: Number,
   },
+  methods: {
+    addProduct() {
+      this.$emit('addToCart');
+    },
+  },
   filters: {
     formatTitle(title) {
       if (title.length > 26) {
@@ -53,7 +60,13 @@ export default {
     },
     formatPrice(price) {
       if (price > 999) {
-
+        const arrayPrice = String(price).split('').reverse();
+        for (let i = 0; i < arrayPrice.length; i += 1) {
+          if (i % 4 === 0) {
+            arrayPrice.splice(i, 0, ' ');
+          }
+        }
+        return `${arrayPrice.reverse().join('')} ₽`;
       }
       return `${price} ₽`;
     },

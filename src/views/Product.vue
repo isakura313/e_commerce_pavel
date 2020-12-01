@@ -1,28 +1,24 @@
 <template>
-  <!--  В template только 1 корневой элемент-->
   <div class="columns">
   <div class="column is-full">
     <div class="card">
-      <!--  v-bind связывает данные с содержимым атрибута-->
-      <img v-bind:src="image" class="card__image">
-      <h3 class="card__title is-size-5"> {{ title | formatTitle }}</h3>
-      <p class="card__price" v-if="discount">
-        <span class="has-text-danger"> {{ new_price | formatPrice}} </span>
-        <del> {{ price | formatPrice}} </del>
+      <div :style="{backgroundImage: `url(${info[0].image})`}" class="card__image"> </div>
+        <h3 class="card__title is-size-5"> {{ info[0].title | formatTitle }}</h3>
+      <p class="card__price" v-if="info[0].discount">
+        <span class="has-text-danger"> {{ info[0].new_price | formatPrice}} </span>
+        <del> {{ info[0].price | formatPrice}} </del>
       </p>
       <p class="card__price" v-else>
-        {{ price | formatPrice}}
+        {{ info[0].price | formatPrice}}
       </p>
       <p class="category__p">Бестселлер</p>
       <StarRating
         increment="0.1"
         read-only = "true"
         star-size = 20
-        :rating ="rating"
+        :rating ="info[0].rating"
       />
-      <p class="card__description">
-        {{description}}
-      </p>
+      <p class="card_description">{{info[0].description}}</p>
       <button class="card__button is-danger button is-pulled-right"> Заказать </button>
     </div>
   </div>
@@ -52,7 +48,7 @@ export default {
     const response = await fetch('/json/fixtures.json');
     // переводим данные из json в обычный объект js - два массива [] товаров
     // массивы - книги и видеокарты
-    this.info = response.json();
+    this.info = await response.json();
     // склеиваем эти массивы и фильтруем их по id
     this.info = [...this.info.video, ...this.info.books].filter((data) => data.id
       === Number(this.$route.params.id));
@@ -65,6 +61,15 @@ export default {
       return title;
     },
     formatPrice(price) {
+      if (price > 999) {
+        const arrayPrice = String(price).split('').reverse();
+        for (let i = 0; i < arrayPrice.length; i += 1) {
+          if (i % 4 === 0) {
+            arrayPrice.splice(i, 0, ' ');
+          }
+        }
+        return `${arrayPrice.reverse().join('')} ₽`;
+      }
       return `${price} ₽`;
     },
   },
@@ -74,8 +79,10 @@ export default {
 
 <style scoped>
 .card__image{
-  height: 200px;
-  /* width: auto; */
+  height: 300px;
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .card{
   padding: 20px;

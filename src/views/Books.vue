@@ -13,6 +13,7 @@
         v-bind:new_price = "book.new_price"
         v-bind:discount = "book.discount"
         v-bind:rating = "book.rating"
+        v-on:addToCart = "addProductToCart(book)"
       />
     </div>
   </div>
@@ -26,6 +27,11 @@ export default {
   name: 'Books',
   components: {
     Card,
+  },
+  methods: {
+    addProductToCart(book) {
+      this.$store.commit('SET_CART', book);
+    },
   },
   data() {
     return {

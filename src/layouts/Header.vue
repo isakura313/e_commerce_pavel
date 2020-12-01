@@ -19,7 +19,7 @@
     <div class="navbar-end">
           <router-link class="navbar-item button" to="/cart">
             <img src="../assets/logo_e.png" height="28">
-            <strong class="counter">0</strong>
+            <strong class="counter"> {{counter}}  </strong>
           </router-link>
     </div>
   </div>
@@ -28,7 +28,10 @@
 
 <script>
 export default {
-
+  name: 'Header',
+  props: {
+    counter: Number,
+  },
 };
 </script>
 
